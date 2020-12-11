@@ -8,9 +8,9 @@ This tutorial is licensed under a <a href="http://creativecommons.org/licenses/b
 ## Acknowledgements
 
 Information and exercises in this lab are adapted from:
--Al Sweigart, "Chapter 16, Working with CSV Files and JSON Data" in [*Automate the Boring Stuff With Python*](https://nostarch.com/automatestuff2) (No Starch Press, 2020): 371-388.
--Wes McKinney, "Chapter 6.1, Reading and Writing Data in Text Format" in *[Python for Data Analysis*](https://www.oreilly.com/library/view/python-for-data/9781491957653/) (O'Reilly, 2017): 169-184.
--Charles Severance, "Chapter 13, Using Web Services" in *[Python for Everybody*](https://www.py4e.com/book.php) (Charles Severance, 2009): 155-170.
+- Al Sweigart, "Chapter 16, Working with CSV Files and JSON Data" in [*Automate the Boring Stuff With Python*](https://nostarch.com/automatestuff2) (No Starch Press, 2020): 371-388.
+- Wes McKinney, "Chapter 6.1, Reading and Writing Data in Text Format" in *[Python for Data Analysis*](https://www.oreilly.com/library/view/python-for-data/9781491957653/) (O'Reilly, 2017): 169-184.
+- Charles Severance, "Chapter 13, Using Web Services" in *[Python for Everybody*](https://www.py4e.com/book.php) (Charles Severance, 2009): 155-170.
 
 The XML portions of this lab are adapted from the "Project 4: XML and XSLT" project materials developed by [Lindsay K. Mattock](http://lindsaymattock.net/) for the the [SLIS 5020 Computing Foundations course](http://lindsaymattock.net/computingfoundations.html). 
 
@@ -22,7 +22,17 @@ The XML portions of this lab are adapted from the "Project 4: XML and XSLT" proj
   * [Working with JSON in Python](#working-with-json-in-python)
   * [Writing to JSON from Python](#writing-to-json-from-python)
   * [JSON Project Prompts](#json-project-prompts)
-
+- [XML](#xml)
+  * [What is XML and why are we learning about it](#what-is-xml-and-why-are-we-learning-about-it)
+    * [XML Versus HTML](#xml-versus-html)
+    * [XML Example 1](#xml-example-1)
+    * [XML Example 2](#xml-example-2)
+  * [Reading XML Into Python](#reading-xml-into-Python)
+    * [Parsing XML in Python](#parsing-xml-in-python)
+  * [Working With XML in Python](#working-with-xml-in-python)
+  * [Writing to XML from Python](#writing-to-xml-from-python)
+  * [XML Project Prompts](#xml-project-prompts)
+- [Lab Notebook Questions]
 
 # JSON
 
@@ -574,7 +584,7 @@ My Books:
 
 <blockquote>Write a similar dictionary for your XML file and generate some output. Copy and paste your code and your result into your notebook. Explain how your program works in your own words.</blockquote>
 
-## Parsing XML in Python
+### Parsing XML in Python
 
 Q. You may be thinking, “…but we already have an XML file with this data in it. Can we use Python to with .xml?” The answer to this question is YES! 
 
