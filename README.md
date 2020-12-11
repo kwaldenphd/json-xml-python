@@ -135,15 +135,132 @@ NOTE: JSON strings always use double quotes, which is rendered in Python as a di
 
 Now that the JSON data is stored as a dictionary in Python, we can interact with it via the functionality avaialble via Python dictionaries.
 
+We could get all of the keys in the dictionary using the `keys()` method.
+```Python
+# import json module
+import json
+
+# string of JSON data
+stringOfJsonData = '{"name": Zophie", "isCat": true, "miceCaught": 0, "felineIQ": null}'
+
+# load JSON data as Python value 
+jsonDataAsPythonValue = json.loads(stringOfJsonData)
+
+# print list of keys
+print jsonDataAsPython.keys()
+```
+
+We could get all of the values in the dictionary using the `values()` method.
+```Python
+# import json module
+import json
+
+# string of JSON data
+stringOfJsonData = '{"name": Zophie", "isCat": true, "miceCaught": 0, "felineIQ": null}'
+
+# load JSON data as Python value 
+jsonDataAsPythonValue = json.loads(stringOfJsonData)
+
+# print list of values
+print jsonDataAsPython.values()
+```
+
+We could iterate by keys over the items in the dictionary.
+```Python
+# import json module
+import json
+
+# string of JSON data
+stringOfJsonData = '{"name": Zophie", "isCat": true, "miceCaught": 0, "felineIQ": null}'
+
+# load JSON data as Python value 
+jsonDataAsPythonValue = json.loads(stringOfJsonData)
+
+# iterate by keys using for loop
+for key in jsonDataAsPython.keys():
+  print key, jsonDataAsPython[key]
+```
+
+We could also iterate over items in dictionary using key-value pairs.
+```Python
+# import json module
+import json
+
+# string of JSON data
+stringOfJsonData = '{"name": Zophie", "isCat": true, "miceCaught": 0, "felineIQ": null}'
+
+# load JSON data as Python value 
+jsonDataAsPythonValue = json.loads(stringOfJsonData)
+
+# iterate by key value pairs using for loop
+for key, value in jsonDataAsPythonValue.items():
+  print key, value
+```
+
+We can read the value for a particular key using the index operator. The command `jsonDataAsPythonValue['name']` will return `Zophie`.
+
+In situations where JSON data includes nested or hierarchical objects and arrays, we will end up with a list of dictionaries in Python.
+
+For example, let's say we have a different JSON example and want to use more complex expressions in Python.
+```Python
+# import json module
+import json
+
+# new json data
+data = '''
+[
+  { "id" : "001",
+    "x" : "2",
+    "name" : "Chuck"
+  } ,
+  { "id" : "009",
+    "x" : "7",
+    "name" : "Brent"
+  }
+]'''
+
+#load data as json
+info = json.loads(data)
+
+# print number of users
+print('User Count:', len(info))
+
+# use for loop to print list of names, IDs, and attributes
+for item in info:
+  print('Name', item['name'])
+  print('Id', item['id'])
+  print('Attribute', item['x'])
+```
+
 For more on working with dictionaries in Python:
 - [Elements of Computing I lab](https://github.com/kwaldenphd/python-lab6/blob/master/README.md#working-with-dictionaries)
 - [W3 Schools tutorial](https://www.w3schools.com/python/python_dictionaries.asp)
 
 # Writing to JSON from Python
 
+The `json.dumps()` function will translate a Python dictionary into a string of JSON-formatted data.
+```Python
+# import json module
+import json
 
+# Python dictionary
+pythonValue = {'isCat': True, 'miceCaught': 0, 'name': 'Zophie', 'felineIQ': None}
 
-When would you want to write to JSON?
+# translate Python value to JSON string
+stringOfJsonData = json.dumps(pythonValue)
+
+stringOfJsonData
+```
+
+Later in the semester we will talk about how to read JSON data into Python and convert it to a tabular data structure (called a data frame in Python), using a library called `pandas`. Stay tuned!
+
+# JSON Project Prompts
+
+Navigate to an open data portal and download a JSON file. OpenData.gov, city of Chicago, SB, SportsReference, other. Open the data in a spreadsheet program and/or text editor What are you seeing, how can we start to make sense of it What documentation is available, etc.
+
+Read the JSON data into Python and convert to a Python value.
+
+Create your own small dictionary with data and convert to JSON string.
 
 # What is XML and why are we learning about it
 
