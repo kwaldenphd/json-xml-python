@@ -8,17 +8,25 @@ This tutorial is licensed under a <a href="http://creativecommons.org/licenses/b
 ## Acknowledgements
 
 Information and exercises in this lab are adapted from:
-Al Sweigart, "Chapter 16, Working with CSV Files and JSON Data" in [*Automate the Boring Stuff With Python*](https://nostarch.com/automatestuff2) (No Starch Press, 2020): 371-388.
-
-Wes McKinney, "Chapter 6.1, Reading and Writing Data in Text Format" in *[Python for Data Analysis*](https://www.oreilly.com/library/view/python-for-data/9781491957653/) (O'Reilly, 2017): 169-184.
-
-Charles Severance, "Chapter 13, Using Web Services" in *[Python for Everybody*](https://www.py4e.com/book.php) (Charles Severance, 2009): 155-170.
+-Al Sweigart, "Chapter 16, Working with CSV Files and JSON Data" in [*Automate the Boring Stuff With Python*](https://nostarch.com/automatestuff2) (No Starch Press, 2020): 371-388.
+-Wes McKinney, "Chapter 6.1, Reading and Writing Data in Text Format" in *[Python for Data Analysis*](https://www.oreilly.com/library/view/python-for-data/9781491957653/) (O'Reilly, 2017): 169-184.
+-Charles Severance, "Chapter 13, Using Web Services" in *[Python for Everybody*](https://www.py4e.com/book.php) (Charles Severance, 2009): 155-170.
 
 The XML portions of this lab are adapted from the "Project 4: XML and XSLT" project materials developed by [Lindsay K. Mattock](http://lindsaymattock.net/) for the the [SLIS 5020 Computing Foundations course](http://lindsaymattock.net/computingfoundations.html). 
 
 # Table of Contents
 
-# What is JSON and why are we learning about it
+- [JSON](#json)
+  * [What is JSON and why are we learning about it](#what-is-json-and-why-are-we-learning-about-it)
+  * [Reading JSON into Python](#reading-json-into-python)
+  * [Working with JSON in Python](#working-with-json-in-python)
+  * [Writing to JSON from Python](#writing-to-json-from-python)
+  * [JSON Project Prompts](#json-project-prompts)
+
+
+# JSON
+
+## What is JSON and why are we learning about it
 
 JavaScript Object Notation (JSON) is as popular way to format data as a single (purportedly human-readable) string. 
 
@@ -92,9 +100,9 @@ For example, take a look at sapmle JSON data from Twitter's API:
 }
 ```
 
-<blockquote>Q1: Decipher what we're seeing in the JSON here. What are the name/value pairs, and how are they organized in this object?
+<blockquote>Q1: Decipher what we're seeing in the JSON here. What are the name/value pairs, and how are they organized in this object?</blockquote>
 
-# Reading JSON into Python
+## Reading JSON into Python
 
 We can read JSON into Python using the `json` module.
 
@@ -133,7 +141,7 @@ This block of code imports the `json` module, calls the `loads()` function and p
 
 NOTE: JSON strings always use double quotes, which is rendered in Python as a dictionary. Because Python dictionaries are not ordered, the order of the Python dictionary may not match the original JSON string order.
 
-# Working with JSON in Python
+## Working with JSON in Python
 
 Now that the JSON data is stored as a dictionary in Python, we can interact with it via the functionality avaialble via Python dictionaries.
 
@@ -238,7 +246,7 @@ For more on working with dictionaries in Python:
 - [Elements of Computing I lab](https://github.com/kwaldenphd/python-lab6/blob/master/README.md#working-with-dictionaries)
 - [W3 Schools tutorial](https://www.w3schools.com/python/python_dictionaries.asp)
 
-# Writing to JSON from Python
+## Writing to JSON from Python
 
 The `json.dumps()` function will translate a Python dictionary into a string of JSON-formatted data.
 ```Python
@@ -256,7 +264,7 @@ stringOfJsonData
 
 Later in the semester we will talk about how to read JSON data into Python and convert it to a tabular data structure (called a data frame in Python), using a library called `pandas`. Stay tuned!
 
-# JSON Project Prompts
+## JSON Project Prompts
 
 Navigate to an open data portal and download a JSON file. OpenData.gov, city of Chicago, SB, SportsReference, other. Open the data in a spreadsheet program and/or text editor What are you seeing, how can we start to make sense of it What documentation is available, etc.
 
@@ -264,7 +272,9 @@ Read the JSON data into Python and convert to a Python value.
 
 Create your own small dictionary with data and convert to JSON string.
 
-# What is XML and why are we learning about it
+# XML
+
+## What is XML and why are we learning about it
 
 Unlike HTML which allowed us to mark up and display information, XML is used for descriptive standards. 
 
@@ -308,7 +318,7 @@ General XML structure:
 
 <blockquote>XML specification from W3C: http://www.w3.org/TR/REC-xml/</blockquote>
 
-## XML Versus HTML
+### XML Versus HTML
 
 According to W3C.....
 
@@ -323,7 +333,7 @@ XML and HTML were designed with different goals:
 
 Explanation from: http://www.w3schools.com/xml/xml_whatis.asp
 
-## XML Example 1
+### XML Example 1
 
 1. We can create an XML document describing the information in this table.
 
@@ -404,7 +414,7 @@ Explanation from: http://www.w3schools.com/xml/xml_whatis.asp
 19. This is the power of encoding data in XML.
 
 
-# XML Example 2
+### XML Example 2
 
 ```XML
 <?xml version="1.0" encoding="UTF-8"?>
@@ -469,7 +479,7 @@ Explanation from: http://www.w3schools.com/xml/xml_whatis.asp
 
 36. We can represent the structure generically in a graph, demonstrating the hierarchical structure of the XML document.
 
-# Reading XML into Python
+## Reading XML into Python
 
 You might already be thinking about how we could interact with XML data in Python. 
 
@@ -564,7 +574,7 @@ My Books:
 
 <blockquote>Write a similar dictionary for your XML file and generate some output. Copy and paste your code and your result into your notebook. Explain how your program works in your own words.</blockquote>
 
-## Task 12: Parsing XML With Python
+## Parsing XML in Python
 
 Q. You may be thinking, “…but we already have an XML file with this data in it. Can we use Python to with .xml?” The answer to this question is YES! 
 
@@ -608,7 +618,7 @@ tree = ET.parse('books.xml')
 root = tree.getroot()
 ```
 
-# Working with XML in Python
+## Working with XML in Python
 
 W. Now we are ready to work with our .xml file in Python. Try adding `print` commands.
 
@@ -699,7 +709,7 @@ for book in root.findall('book'):
 
 <blockquote>Write a similar program for the .xml file that you created in the last exercise. Pull data from at least two elements. Copy your code and your output in your notebook and explain what your code does (or is attempting to do).</blockquote>
 
-# Writing to XML from Python
+## Writing to XML from Python
 
 When working with JSON, `json.dumps()` made it relatively straightforward to transform a Python dictionary back into a JSON object.
 
@@ -757,7 +767,7 @@ myFile.close()
 
 <blockquote>QX: Something with your own small XML structure from earlier in the lab and write that to file</blockquote>
 
-# XML Project prompts
+## XML Project prompts
 
 Navigate to an open data portal and download an XML file. OpenData.gov, , other. Open the data in a text editor What are you seeing, how can we start to make sense of it What documentation is available, etc.
 
