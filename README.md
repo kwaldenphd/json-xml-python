@@ -32,7 +32,7 @@ The XML portions of this lab are adapted from the "Project 4: XML and XSLT" proj
   * [Working With XML in Python](#working-with-xml-in-python)
   * [Writing to XML from Python](#writing-to-xml-from-python)
   * [XML Project Prompts](#xml-project-prompts)
-- [Lab Notebook Questions]
+- [Lab Notebook Questions](#lab-notebook-questions)
 
 # JSON
 
