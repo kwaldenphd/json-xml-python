@@ -272,6 +272,19 @@ stringOfJsonData = json.dumps(pythonValue)
 stringOfJsonData
 ```
 
+We can also write data in a Python dictionary to a JSON file also using `json.dump()`.
+```Python
+# import json module
+import json
+
+# Python dictionary
+pythonValue = {'isCat': True, 'miceCaught': 0, 'name': 'Zophie', 'felineIQ': None}
+
+# create new JSON file and write dictionary to file
+with open('output.json', 'w') as json_file:
+	json.dump(pythonValue, json_file)
+```
+
 Later in the semester we will talk about how to read JSON data into Python and convert it to a tabular data structure (called a data frame in Python), using a library called `pandas`. Stay tuned!
 
 ## JSON Project Prompts
