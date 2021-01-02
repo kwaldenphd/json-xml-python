@@ -635,7 +635,7 @@ My Books:
 
 88. You may be thinking, “…but we already have an XML file with this data in it. Can we use Python to with .xml?” The answer to this question is YES! 
 
-89. In this next task, we’ll use the ElementTree API https://docs.python.org/3/library/xml.etree.elementtree.html. This is part of the Python library that has been written specifically to parse XML. 
+89. In this next task, we’ll use the [ElementTree API](https://docs.python.org/3/library/xml.etree.elementtree.html). This is part of the Python library that has been written specifically to parse XML. 
 
 90. We’ll only work with a few functions and methods from ElementTree as an introduction to the tool.
 
