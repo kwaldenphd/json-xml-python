@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE books [
+<!ELEMENT books (book+)>
+<!ELEMENT book (title,author+,year)>
+<!ELEMENT title (#PCDATA)>
+<!ATTLIST title type CDATA "lang">
+<!ELEMENT author (firstName,lastName)>
+<!ELEMENT firstName (#PCDATA)>
+<!ELEMENT lastName (#PCDATA)>
+<!ELEMENT heading (#PCDATA)>
+<!ELEMENT body (#PCDATA)>
+<!ELEMENT year (#PCDATA)>
+<!ELEMENT signature (#PCDATA)>
+<!ATTLIST book category CDATA #REQUIRED>
+<!ATTLIST title lang CDATA #REQUIRED>
+]>
+
+<books>
+<book category="HTML">
+<title lang="en">HTML and XHTML: The Definitive Guide</title>
+<author>
+<firstName>Bill</firstName>
+<lastName>Kennedy</lastName>
+</author>
+<author>
+<firstName>Chuck</firstName>
+<lastName>Musciano</lastName>
+</author>
+<year>2006</year>
+</book>
+<book category="CSS">
+<title lang="en">CSS: The Definitive Guide</title>
+<author>
+<firstName>Eric</firstName>
+<lastName>Meyer</lastName>
+</author>
+<year>2007</year>
+</book>
+<book category="XML">
+<title lang="en">Learning XML</title>
+<author>
+<firstName>Erik</firstName>
+<lastName>Ray</lastName>
+</author>
+<year>2003</year>
+</book>
+</books>
