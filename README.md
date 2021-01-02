@@ -5,6 +5,17 @@ This tutorial is licensed under a <a href="http://creativecommons.org/licenses/b
 
 ## Lab Goals
 
+This lab covers the basic components and structure for JSON and XML data files. This lab covers various methods for reading JSON and XML data into Python using `json` and `ElementTree`. The lab also overs writing data from Python to JSON or XML.
+
+By the end of this lab, students will be able to:
+- Describe the structure and components of JSON and XML  files
+- Read a JSON file file into Python using the `json` module
+- Understand how Python dictionaries work as a type of structured data
+- Understand how to generate an XML structure from within Python
+- Write data from Python to JSON and XML files
+
+[Click here](https://raw.githubusercontent.com/kwaldenphd/json-xml-python/main/json-xml-python.ipynb) and select the "Save as" option to download this lab as a Jupyter Notebook.
+
 ## Acknowledgements
 
 Information and exercises in this lab are adapted from:
@@ -16,6 +27,7 @@ The XML portions of this lab are adapted from the "Project 4: XML and XSLT" proj
 
 # Table of Contents
 
+- [Data](#data)
 - [JSON](#json)
   * [What is JSON and why are we learning about it](#what-is-json-and-why-are-we-learning-about-it)
   * [Reading JSON into Python](#reading-json-into-python)
@@ -33,6 +45,12 @@ The XML portions of this lab are adapted from the "Project 4: XML and XSLT" proj
   * [Writing to XML from Python](#writing-to-xml-from-python)
   * [XML Project Prompt](#xml-project-prompt)
 - [Lab Notebook Questions](#lab-notebook-questions)
+
+# Data
+
+The only data needed for this lab is the `books.xml` file, which can be dowloaded from this GitHub repo.
+
+[Link to Google Drive access (ND users only)](https://drive.google.com/drive/folders/1fa78Av2rELSuk2Nhj1DR8yErJeZQRNbN?usp=sharing)
 
 # JSON
 
@@ -302,7 +320,7 @@ with open('output.json', 'w') as json_file:
 
 38. Open the data in a spreadsheet program and/or text editor 
 
-39. Describe what are you seeing. How can we start to make senes of this data? What documentation is avaialb.e?
+39. Describe what are you seeing. How can we start to make senes of this data? What documentation is available?
 
 40. Read the JSON data into Python and convert to a Python value.
 
@@ -589,6 +607,7 @@ books = {
 
 ```Python
 print("My Books: ")
+
 for book, book_info in books.items():
   full_title = book + " (" + book_info['date'] + ")"
   print("\t" + full_title_title())
