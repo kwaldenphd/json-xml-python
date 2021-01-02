@@ -1,4 +1,4 @@
-# Lab #3: Working with JSON and XML files in Python
+# Working with JSON and XML files in Python
 
 <a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license"><img style="border-width: 0;" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" alt="Creative Commons License" /></a>
 This tutorial is licensed under a <a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
@@ -9,8 +9,8 @@ This tutorial is licensed under a <a href="http://creativecommons.org/licenses/b
 
 Information and exercises in this lab are adapted from:
 - Al Sweigart, "Chapter 16, Working with CSV Files and JSON Data" in [*Automate the Boring Stuff With Python*](https://nostarch.com/automatestuff2) (No Starch Press, 2020): 371-388.
-- Wes McKinney, "Chapter 6.1, Reading and Writing Data in Text Format" in *[Python for Data Analysis*](https://www.oreilly.com/library/view/python-for-data/9781491957653/) (O'Reilly, 2017): 169-184.
-- Charles Severance, "Chapter 13, Using Web Services" in *[Python for Everybody*](https://www.py4e.com/book.php) (Charles Severance, 2009): 155-170.
+- Wes McKinney, "Chapter 6.1, Reading and Writing Data in Text Format" in [*Python for Data Analysis*](https://www.oreilly.com/library/view/python-for-data/9781491957653/) (O'Reilly, 2017): 169-184.
+- Charles Severance, "Chapter 13, Using Web Services" in [*Python for Everybody*](https://www.py4e.com/book.php) (Charles Severance, 2009): 155-170.
 
 The XML portions of this lab are adapted from the "Project 4: XML and XSLT" project materials developed by [Lindsay K. Mattock](http://lindsaymattock.net/) for the the [SLIS 5020 Computing Foundations course](http://lindsaymattock.net/computingfoundations.html). 
 
@@ -21,7 +21,7 @@ The XML portions of this lab are adapted from the "Project 4: XML and XSLT" proj
   * [Reading JSON into Python](#reading-json-into-python)
   * [Working with JSON in Python](#working-with-json-in-python)
   * [Writing to JSON from Python](#writing-to-json-from-python)
-  * [JSON Project Prompts](#json-project-prompts)
+  * [JSON Project Prompt](#json-project-prompt)
 - [XML](#xml)
   * [What is XML and why are we learning about it](#what-is-xml-and-why-are-we-learning-about-it)
     * [XML Versus HTML](#xml-versus-html)
@@ -31,38 +31,38 @@ The XML portions of this lab are adapted from the "Project 4: XML and XSLT" proj
     * [Parsing XML in Python](#parsing-xml-in-python)
   * [Working With XML in Python](#working-with-xml-in-python)
   * [Writing to XML from Python](#writing-to-xml-from-python)
-  * [XML Project Prompts](#xml-project-prompts)
+  * [XML Project Prompt](#xml-project-prompt)
 - [Lab Notebook Questions](#lab-notebook-questions)
 
 # JSON
 
 ## What is JSON and why are we learning about it
 
-JavaScript Object Notation (JSON) is as popular way to format data as a single (purportedly human-readable) string. 
+1. JavaScript Object Notation (JSON) is as popular way to format data as a single (purportedly human-readable) string. 
 
-JavaScript programs use JSON data structures, but we can frequently encounter JSON data outside of a JavaScript environment.
+2. JavaScript programs use JSON data structures, but we can frequently encounter JSON data outside of a JavaScript environment.
 
-Websites that make machine-readable data available via an application programming interface (API- more on these in an upcoming lab) often provide that data in a JSON format. Examples include Twitter, Wikipedia, Data.gov, etc. Most live data connections available via an API are provided in a JSON format.
+3. Websites that make machine-readable data available via an application programming interface (API- more on these in an upcoming lab) often provide that data in a JSON format. Examples include Twitter, Wikipedia, Data.gov, etc. Most live data connections available via an API are provided in a JSON format.
 
-JSON structure can vary WIDELY depending on the specific data provider, but this lab will cover some basic elements of working with JSON in Python.
+4. JSON structure can vary WIDELY depending on the specific data provider, but this lab will cover some basic elements of working with JSON in Python.
 
-The easiest way to think of JSON data as a plain-text data format made up of something like key-value pairs, like we've encountered previously in working with dictionaries.
+5. The easiest way to think of JSON data as a plain-text data format made up of something like key-value pairs, like we've encountered previously in working with dictionaries.
 
-Example JSON string: `stringOfJsonData = '{"name": Zophie", "isCat": true, "miceCaught": 0, "felineIQ": null}'`
+6. Example JSON string: `stringOfJsonData = '{"name": Zophie", "isCat": true, "miceCaught": 0, "felineIQ": null}'`
 
-From looking at the example string, we can see field names or keys (`name`, `isCat`, `miceCaught`, `felineIQ`) and values for those fields.
+7. From looking at the example string, we can see field names or keys (`name`, `isCat`, `miceCaught`, `felineIQ`) and values for those fields.
 
-To use more precise terminology, JSON data has the following attributes:
+8. To use more precise terminology, JSON data has the following attributes:
 - uses name/value pairs
 - separates data using commas
 - holds objects using curly braces `{}`
 - holds arrays using square brackets `[]`
 
-In our example `stringOfJsonData`, we have an object contained in curly braces. 
+9. In our example `stringOfJsonData`, we have an object contained in curly braces. 
 
-An object can include multiple name/value pairs. Multiple objects together can form an array.
+10. An object can include multiple name/value pairs. Multiple objects together can form an array.
 
-Values stored in JSON format must be one of the following data types:
+11. Values stored in JSON format must be one of the following data types:
 - string
 - number
 - object (JSON object)
@@ -70,13 +70,17 @@ Values stored in JSON format must be one of the following data types:
 - boolean
 - null
 
-How is data stored in a JSON format different than a CSV? A `.csv` file uses characters as delimiters and has more of a tabular (table-like) structure.
+12. How is data stored in a JSON format different than a CSV? 
 
-JSON data uses characters as part of the syntax, but not in the same way as delimited data files. Additionally, the data stored in a JSON format has values that are attached to names (or keys).
+13. A `.csv` file uses characters as delimiters and has more of a tabular (table-like) structure.
 
-JSON can also have a hierarchical or nested structure, in that objects can be stored or nested inside other objects as part of the same array.
+14. JSON data uses characters as part of the syntax, but not in the same way as delimited data files. 
 
-For example, take a look at sapmle JSON data from Twitter's API:
+15. Additionally, the data stored in a JSON format has values that are attached to names (or keys).
+
+16. JSON can also have a hierarchical or nested structure, in that objects can be stored or nested inside other objects as part of the same array.
+
+17. For example, take a look at sapmle JSON data from Twitter's API:
 ```JSON
 {
   "created_at": "Thu Apr 06 15:24:15 +0000 2017",
@@ -114,13 +118,13 @@ For example, take a look at sapmle JSON data from Twitter's API:
 
 ## Reading JSON into Python
 
-We can read JSON into Python using the `json` module.
+18. We can read JSON into Python using the `json` module.
 
 <blockquote><a href="https://docs.python.org/3/library/json.html">Click here</a> to learn more about the <code>json</code> module.</blockquote>
 
-The `json.loads()` and `json.dumps()` functions translate JSON data and Python values.
+19. The `json.loads()` and `json.dumps()` functions translate JSON data and Python values.
 
-Translation table:
+20. Translation table:
 JSON | Python
 --- | ---
 object | dict
@@ -132,7 +136,7 @@ true | True
 false | False
 null | None
 
-To translate a string of JSON data into a Python value, we pass it to the `json.loads()` function.
+21. To translate a string of JSON data into a Python value, we pass it to the `json.loads()` function.
 ```Python
 # import json module
 import json
@@ -147,15 +151,15 @@ jsonDataAsPythonValue = json.loads(stringOfJsonData)
 jsonDataAsPythonValue
 ```
 
-This block of code imports the `json` module, calls the `loads()` function and passes a string of JSON data to the `loads()` function.
+22. This block of code imports the `json` module, calls the `loads()` function and passes a string of JSON data to the `loads()` function.
 
-NOTE: JSON strings always use double quotes, which is rendered in Python as a dictionary. Because Python dictionaries are not ordered, the order of the Python dictionary may not match the original JSON string order.
+23. NOTE: JSON strings always use double quotes, which is rendered in Python as a dictionary. Because Python dictionaries are not ordered, the order of the Python dictionary may not match the original JSON string order.
 
 ## Working with JSON in Python
 
-Now that the JSON data is stored as a dictionary in Python, we can interact with it via the functionality avaialble via Python dictionaries.
+24. Now that the JSON data is stored as a dictionary in Python, we can interact with it via the functionality avaialble via Python dictionaries.
 
-We could get all of the keys in the dictionary using the `keys()` method.
+25. We could get all of the keys in the dictionary using the `keys()` method.
 ```Python
 # import json module
 import json
@@ -170,7 +174,7 @@ jsonDataAsPythonValue = json.loads(stringOfJsonData)
 print jsonDataAsPython.keys()
 ```
 
-We could get all of the values in the dictionary using the `values()` method.
+26. We could get all of the values in the dictionary using the `values()` method.
 ```Python
 # import json module
 import json
@@ -185,7 +189,7 @@ jsonDataAsPythonValue = json.loads(stringOfJsonData)
 print jsonDataAsPython.values()
 ```
 
-We could iterate by keys over the items in the dictionary.
+27. We could iterate by keys over the items in the dictionary.
 ```Python
 # import json module
 import json
@@ -201,7 +205,7 @@ for key in jsonDataAsPython.keys():
   print key, jsonDataAsPython[key]
 ```
 
-We could also iterate over items in dictionary using key-value pairs.
+28. We could also iterate over items in dictionary using key-value pairs.
 ```Python
 # import json module
 import json
@@ -217,11 +221,11 @@ for key, value in jsonDataAsPythonValue.items():
   print key, value
 ```
 
-We can read the value for a particular key using the index operator. The command `jsonDataAsPythonValue['name']` will return `Zophie`.
+29. We can read the value for a particular key using the index operator. The command `jsonDataAsPythonValue['name']` will return `Zophie`.
 
-In situations where JSON data includes nested or hierarchical objects and arrays, we will end up with a list of dictionaries in Python.
+30. In situations where JSON data includes nested or hierarchical objects and arrays, we will end up with a list of dictionaries in Python.
 
-For example, let's say we have a different JSON example and want to use more complex expressions in Python.
+31. For example, let's say we have a different JSON example and want to use more complex expressions in Python.
 ```Python
 # import json module
 import json
@@ -252,13 +256,13 @@ for item in info:
   print('Attribute', item['x'])
 ```
 
-For more on working with dictionaries in Python:
+32. For more on working with dictionaries in Python:
 - [Elements of Computing I lab](https://github.com/kwaldenphd/python-lab6/blob/master/README.md#working-with-dictionaries)
 - [W3 Schools tutorial](https://www.w3schools.com/python/python_dictionaries.asp)
 
 ## Writing to JSON from Python
 
-The `json.dumps()` function will translate a Python dictionary into a string of JSON-formatted data.
+33. The `json.dumps()` function will translate a Python dictionary into a string of JSON-formatted data.
 ```Python
 # import json module
 import json
@@ -272,7 +276,7 @@ stringOfJsonData = json.dumps(pythonValue)
 stringOfJsonData
 ```
 
-We can also write data in a Python dictionary to a JSON file also using `json.dump()`.
+34. We can also write data in a Python dictionary to a JSON file also using `json.dump()`.
 ```Python
 # import json module
 import json
@@ -285,29 +289,36 @@ with open('output.json', 'w') as json_file:
 	json.dump(pythonValue, json_file)
 ```
 
-Later in the semester we will talk about how to read JSON data into Python and convert it to a tabular data structure (called a data frame in Python), using a library called `pandas`. Stay tuned!
+35. Later in the semester we will talk about how to read JSON data into Python and convert it to a tabular data structure (called a data frame in Python), using a library called `pandas`. Stay tuned!
 
-## JSON Project Prompts
+## JSON Project Prompt
 
-Navigate to an open data portal and download a JSON file. OpenData.gov, city of Chicago, SB, SportsReference, other. Open the data in a spreadsheet program and/or text editor What are you seeing, how can we start to make sense of it What documentation is available, etc.
+36. Navigate to an open data portal and download a JSON file. 
 
-Read the JSON data into Python and convert to a Python value.
+37. Some options that can get you started:
+- [Data.gov](https://www.data.gov/)
+- [City of Chicago Data Portal](https://data.cityofchicago.org/)
+- [City of South Bend Open Data](https://data-southbend.opendata.arcgis.com/)
 
-Create your own small dictionary with data and convert to JSON string.
+38. Open the data in a spreadsheet program and/or text editor 
+
+39. Describe what are you seeing. How can we start to make senes of this data? What documentation is avaialb.e?
+
+40. Read the JSON data into Python and convert to a Python value.
+
+41. Create your own small dictionary with data and convert to JSON string.
 
 # XML
 
 ## What is XML and why are we learning about it
 
-Unlike HTML which allowed us to mark up and display information, XML is used for descriptive standards. 
+42. Unlike HTML which allowed us to mark up and display information, XML is used for descriptive standards. 
 
-For information professionals that work in places like libraries, XML is commonly associated with metadata--the descriptive information needed to describe information. That is, XML is used to encode metadata. 
+43. For information professionals that work in places like libraries, XML is commonly associated with metadata--the descriptive information needed to describe information. That is, XML is used to encode metadata. 
 
-Most library catalogues are built on some kind of XML.
+44. Another example of digital work built on XML falls under the umbrella of the [Text Encoding Initiative](https://tei-c.org/), a group that’s been around since the 1970s and the early days of digital humanities. TEI includes a standardized set of tags that are used for marking or encoding various parts of a text.
 
-Another example of digital work built on XML falls under the umbrella of the [Text Encoding Initiative](https://tei-c.org/), a group that’s been around since the 1970s and the early days of digital humanities. TEI includes a standardized set of tags that are used for marking or encoding various parts of a text.
-
-Sample projects that use TEI:
+45. Sample projects that use TEI:
 - [Digital Archives and Pacific Culture](http://pacific.pitt.edu/InjuredIsland.html)
 - [The Digital Temple](https://digitaltemple.rotunda.upress.virginia.edu/)
 - [The Diary of Mary Martin](https://dh.tcd.ie/martindiary/)
@@ -315,17 +326,21 @@ Sample projects that use TEI:
 - [African American Women Writers](http://digital.nypl.org/schomburg/writers_aa19/)
 - [The Walt Whitman Archive](https://whitmanarchive.org/)
 
-XML is designed to store and transport data, it does not DO anything - XML is simply information that is wrapped in a set of tags. These tags can be user defined or from a standardized schema (like TEI). So, users of XML are free to develop their own set of tags or content standards in XML to describe whatever kind of information they would like.
+46. XML is designed to store and transport data, it does not DO anything - XML is simply information that is wrapped in a set of tags. 
 
-28. The root element is the `parent` element to all of the other elements within an XML document. 
+47. These tags can be user defined or from a standardized schema (like TEI). 
 
-29. The elements are arranged hierarchically: `parent` elements have `child` elements, `child` elements have `sibling` or `subchild`’ elements. 
+48. So, users of XML are free to develop their own set of tags or content standards in XML to describe whatever kind of information they would like.
 
-30. The indentation is used to indicate the hierarchical structure of an XML document. 
+49. The root element is the `parent` element to all of the other elements within an XML document. 
 
-NOTE: XML tags are case sensitive. This matters when we are working in Python to isolate specific components or elements in XML data.
+50. The elements are arranged hierarchically: `parent` elements have `child` elements, `child` elements have `sibling` or `subchild`’ elements. 
 
-General XML structure:
+51. The indentation is used to indicate the hierarchical structure of an XML document. 
+
+52. NOTE: XML tags are case sensitive. This matters when we are working in Python to isolate specific components or elements in XML data.
+
+53. General XML structure:
 
 ```XML
 <?xml version="1.0" encoding="UTF-8"?>
@@ -343,7 +358,7 @@ General XML structure:
 
 ### XML Versus HTML
 
-According to W3C.....
+54. According to W3C.....
 
 <i>
 XML and HTML were designed with different goals:
@@ -358,7 +373,7 @@ Explanation from: http://www.w3schools.com/xml/xml_whatis.asp
 
 ### XML Example 1
 
-1. We can create an XML document describing the information in this table.
+55. We can create an XML document describing the information in this table.
 
 <table>
   <tr>
@@ -399,13 +414,13 @@ Explanation from: http://www.w3schools.com/xml/xml_whatis.asp
 </course>
 ```
   
-2. Each piece of information is enclosed in a set of tags just like HTML, and each tag has an opening and closing tag. These are called elements. 
+56. Each piece of information is enclosed in a set of tags just like HTML, and each tag has an opening and closing tag. These are called elements. 
 
-6. Unlike HTML, XML is only used to describe the data. It doesn’t provide instructions to the browser like HTML does in terms of formatting and display.
+57 Unlike HTML, XML is only used to describe the data. It doesn’t provide instructions to the browser like HTML does in terms of formatting and display.
 
-7. XML elements can be further defined with attributes. 
+58. XML elements can be further defined with attributes. 
 
-8. In the first example, I used the element <instructor> to describe my role in the course. In this second example, I’ve added the type “assistant teaching professor" to further describe the instructor tag.
+59. In the first example, I used the element <instructor> to describe my role in the course. In this second example, I’ve added the type “assistant teaching professor" to further describe the instructor tag.
   
 ```XML
 <course>
@@ -426,18 +441,19 @@ Explanation from: http://www.w3schools.com/xml/xml_whatis.asp
 </course>
 ```
 
-15. So, why would we want to markup all of this information in XML? 
+60. So, why would we want to markup all of this information in XML? 
 
-16. Well, imagine that we have a list of all of the different courses taught at Notre Dame. 
+61. Well, imagine that we have a list of all of the different courses taught at Notre Dame. 
 
-17. If we had all of this information marked up in XML, we could run queries against the data. 
+62. If we had all of this information marked up in XML, we could run queries against the data. 
 
-18. For example, we could search for all of the courses taught by Jerod Weinman, or all of the courses taught by assistant professors, or find all of the courses taught on Mondays, etc. 
+63. For example, we could search for all of the courses taught by Jerod Weinman, or all of the courses taught by assistant professors, or find all of the courses taught on Mondays, etc. 
 
-19. This is the power of encoding data in XML.
-
+64. This is the power of encoding data in XML.
 
 ### XML Example 2
+
+65. Let’s look at a more extensive example to illustrate the basic XML syntax. 
 
 ```XML
 <?xml version="1.0" encoding="UTF-8"?>
@@ -488,36 +504,35 @@ Explanation from: http://www.w3schools.com/xml/xml_whatis.asp
   </book>
 </books>
 ```
-32. Let’s look at a more extensive example to illustrate the basic XML syntax. 
 
-33. Here I’ve created a file describing books related to XML, HTML, and CSS.
+66. Here I’ve created a file describing books related to XML, HTML, and CSS.
 
-<blockquote>Q1: Describe the structure of this XML document in your own words.</blockquote>
+<blockquote>Q2: Describe the structure of this XML document in your own words.</blockquote>
 
-34. The root element of this document is <books>, followed by a series of <book> child elements that contain information about each of the individual books described in the document. 
+67. The root element of this document is <books>, followed by a series of <book> child elements that contain information about each of the individual books described in the document. 
   
-35. Each `<book>` has an attribute `@category` that describes the subject of the book, a `<title>` (with an attribute `@language`), `<author>` (with child elements `<firstName>` and `<lastName>`), and a publication `<year>`.
+68. Each `<book>` has an attribute `@category` that describes the subject of the book, a `<title>` (with an attribute `@language`), `<author>` (with child elements `<firstName>` and `<lastName>`), and a publication `<year>`.
 
-<p align="center"><a href="https://github.com/kwaldenphd/XML/blob/master/images/Image_7.jpg?raw=true"><img class="aligncenter" src="https://github.com/kwaldenphd/XML/blob/master/images/Image_7.jpg?raw=true" /></a></p>
+<p align="center"><a href="https://github.com/kwaldenphd/json-xml-python/blob/main/Figure_1.jpg?raw=true"><img class="aligncenter" src="https://github.com/kwaldenphd/json-xml-python/blob/main/Figure_1.jpg?raw=true" /></a></p>
 
-36. We can represent the structure generically in a graph, demonstrating the hierarchical structure of the XML document.
+69. We can represent the structure generically in a graph, demonstrating the hierarchical structure of the XML document.
 
 ## Reading XML into Python
 
-You might already be thinking about how we could interact with XML data in Python. 
+70. You might already be thinking about how we could interact with XML data in Python. 
 
-XML elements have similarities to JSON's name-value pairs, and Python dictionary key-value pairs.
+71. XML elements have similarities to JSON's name-value pairs, and Python dictionary key-value pairs.
 
-We could represent the second XML example in Python using distinct dictionaries.
+72. We could represent the second XML example in Python using distinct dictionaries.
 
-C. One way to accomplish this goal with Python would be to generate two different dictionaries.
+74. One way to accomplish this goal with Python would be to generate two different dictionaries.
 
 ```Python
 book_0={'title': 'CSS: The Definitive Guide', 'author': 'Eric Meyer', 'date': '2007'}
 book_1={'title': 'Learning XML', 'author': 'Erik Ray', 'date': '2003'}
 ```
 
-D. We could then use a list to generate a list of the metadata for each of the works.
+75. We could then use a list to generate a list of the metadata for each of the works.
 
 ```Python
 book_0={'title': 'CSS: The Definitive Guide', 'author': 'Eric Meyer', 'date': '2007'}
@@ -527,9 +542,9 @@ books = [book_0, book_1]
 print(books)
 ```
 
-E. While the this program outputs all of the metadata, one of the advantages of our XML file is that all of the information was stored in a single place.
+76. While the this program outputs all of the metadata, one of the advantages of our XML file is that all of the information was stored in a single place.
 
-F. Another solution would be to embed a list in a dictionary.
+77. Another solution would be to embed a list in a dictionary.
 
 ```Python
 books = {
@@ -543,7 +558,7 @@ for title in books['title']:
   print("\t" + title)
 ```
 
-G. This program outputs:
+78. This program outputs:
 
 ```
 My books include books by Eric Meyer and Erik Ray:
@@ -553,7 +568,7 @@ My books include books by Eric Meyer and Erik Ray:
 
 <blockquote>Note: The <code>\t</code> is a short cut for a TAB so that my list was indented. <code>\n</code> will generate a new line in your output.</blockquote>
 
-H. While this dictionary contains all of the data from my XML, there are some limitations. The dates are not specifically connected to the title that they are associated with. We can solve this problem by nesting a dictionary in a dictionary.
+79. While this dictionary contains all of the data from my XML, there are some limitations. The dates are not specifically connected to the title that they are associated with. We can solve this problem by nesting a dictionary in a dictionary.
 
 ```Python
 books = {
@@ -568,9 +583,9 @@ books = {
 }
 ```
 
-I. This example includes a dictionary called `books` that holds two other dictionaries. It uses the title as the key for each of the dictionaries for the works. The value of each of these keys is a dictionary containing “title”, “date”, and "author.”
+80. This example includes a dictionary called `books` that holds two other dictionaries. It uses the title as the key for each of the dictionaries for the works. The value of each of these keys is a dictionary containing “title”, “date”, and "author.”
 
-J. The following program will output the titles of items in this collection as well as associated dates.
+81. The following program will output the titles of items in this collection as well as associated dates.
 
 ```Python
 print("My Books: ")
@@ -578,32 +593,32 @@ for book, book_info in books.items():
   full_title = book + " (" + book_info['date'] + ")"
   print("\t" + full_title_title())
 ```
-K. This program prints the title first as a separate line. The `for` loop digs into the data for each of the books. 
+82. This program prints the title first as a separate line. The `for` loop digs into the data for each of the books. 
 
-L. `book` is the variable assigned to each of the keys in the `books` dictionary - in this example it is the titles of each of the books. 
+83. `book` is the variable assigned to each of the keys in the `books` dictionary - in this example it is the titles of each of the books. 
 
-M. `book_info` is the variable assigned to each of the values. `method .items()` works through each of the dictionaries. 
+84. `book_info` is the variable assigned to each of the values. `method .items()` works through each of the dictionaries. 
 
-N. The next line, assigns a variable `full_title` that concatenates each work variable with an opening `(`, the date for each work called with `book_info[‘date’]`, and a closing `)`. 
+85. The next line, assigns a variable `full_title` that concatenates each work variable with an opening `(`, the date for each work called with `book_info[‘date’]`, and a closing `)`. 
 
-O. The final line prints a tab `\t` before each concatenated string that we just created with the `full_title` variable.
+86. The final line prints a tab `\t` before each concatenated string that we just created with the `full_title` variable.
 
-P. This outputs:
+87. This outputs:
 ```
 My Books:
   CSS: The Definitive Guide (2007)
   Learning XML (2003)
 ```
 
-<blockquote>Write a similar dictionary for your XML file and generate some output. Copy and paste your code and your result into your notebook. Explain how your program works in your own words.</blockquote>
+<blockquote>Q3: Write a similar dictionary for the <code>book.xml</code> file contained in this repo and generate some output. Include code + comments. Explain how your program works in your own words.</blockquote>
 
 ### Parsing XML in Python
 
-Q. You may be thinking, “…but we already have an XML file with this data in it. Can we use Python to with .xml?” The answer to this question is YES! 
+88. You may be thinking, “…but we already have an XML file with this data in it. Can we use Python to with .xml?” The answer to this question is YES! 
 
-R. In this next task, we’ll use the ElementTree API https://docs.python.org/3/library/xml.etree.elementtree.html. This is part of the Python library that has been written specifically to parse XML. 
+89. In this next task, we’ll use the ElementTree API https://docs.python.org/3/library/xml.etree.elementtree.html. This is part of the Python library that has been written specifically to parse XML. 
 
-S. We’ll only work with a few functions and methods from ElementTree as an introduction to the tool.
+90. We’ll only work with a few functions and methods from ElementTree as an introduction to the tool.
 
 ```XML
 <?xml version="1.0" encoding="UTF-8"?>
@@ -621,19 +636,19 @@ S. We’ll only work with a few functions and methods from ElementTree as an int
 </books>
 ```
 
-T. First, we need to import the ElementTree module into our file so that we can continue to use the methods and functions associated with ElementTree. Type this first line of code into a new file called `XML.py` (or whatever you’d like to call it).
+91. First, we need to import the ElementTree module into our file so that we can continue to use the methods and functions associated with ElementTree. Type this first line of code into a new file called `XML.py` (or whatever you’d like to call it).
 
 ```Python
 import xml.etree.cElementTree as ET
 ```
 
-U. Now we need to import our .xml file. Remember, you’ll need to include the entire file path for your .xml file if it is not in the same folder as your python file.
+92. Now we need to import our .xml file. Remember, you’ll need to include the entire file path for your .xml file if it is not in the same folder as your python file.
 
 ```Python
 import xml.etree.cElementTree as ET
 tree = ET.parse('books.xml')
 ```
-V. And, finally, we need to get the root element of our xml file. Remember in our last project we also had to name the root element in our XSL file. This tag that is at the top of the hierarchy. In the example file, the root is `<books>`.
+93. And, finally, we need to get the root element of our xml file. Remember in our last project we also had to name the root element in our XSL file. This tag that is at the top of the hierarchy. In the example file, the root is `<books>`.
 
 ```Python
 import xml.etree.cElementTree as ET
@@ -643,7 +658,7 @@ root = tree.getroot()
 
 ## Working with XML in Python
 
-W. Now we are ready to work with our .xml file in Python. Try adding `print` commands.
+94. Now we are ready to work with our `.xml` file in Python. Try adding `print` commands.
 
 ```Python
 import xml.etree.cElementTree as ET
@@ -654,17 +669,17 @@ print(root.tag)
 print(root.attrib)
 ```
 
-X. This program returns the output:
+95. This program returns the output:
 ```
 books
 {}
 ```
 
-Y. This set of commands returns the tag for the root element `books` and an empty set of braces for the attribute because there is not an attribute associated with the `books` tag. 
+96. This set of commands returns the tag for the root element `books` and an empty set of braces for the attribute because there is not an attribute associated with the `books` tag. 
 
-Z. You probably didn’t assign attributes to your XML tags, so we’ll keep working with tags. If you have attributes in your file, you can consult the documentation for ElementTree to modify your code.
+97. You probably didn’t assign attributes to your XML tags, so we’ll keep working with tags. If you have attributes in your file, you can consult the documentation for ElementTree to modify your code.
 
-AA. This code gave us the root element, but what if we want to see the structure of our document? We can use the `iterator` function to pull all of the elements from our XML file in a simple loop that outputs each tag and the text value associated with it.
+98. This code gave us the root element, but what if we want to see the structure of our document? We can use the `iterator` function to pull all of the elements from our XML file in a simple loop that outputs each tag and the text value associated with it.
 
 ```Python
 import xml.etree.cElementTree as ET
@@ -677,7 +692,7 @@ for element in iter:
   print element.tag, element.text
 ```
 
-BB. This program outputs:
+99. This program outputs:
 ```
 books
 
@@ -693,11 +708,11 @@ date 2003
 author Erik Ray
 ```
 
-CC. Now let’s get some data from the file. This next program creates a loop that returns all the titles in the file. 
+100. Now let’s get some data from the file. This next program creates a loop that returns all the titles in the file. 
 
-DD. In the sample XML file, `<book>` tag is the child of `<books>` and `<title>` is a child of `<book>`. 
+101. In the sample XML file, `<book>` tag is the child of `<books>` and `<title>` is a child of `<book>`. 
 
-EE. This loop says for each work, assign text from the `title` element to the variable `title`, and then print the titles.
+102. This loop says for each work, assign text from the `title` element to the variable `title`, and then print the titles.
 
 ```Python
 import xml.etree.cElementTree as ET
@@ -709,12 +724,12 @@ for book in root.findall('book'):
   print(title)
 ```
 
-FF. This program outputs:
+103. This program outputs:
 ```
 CSS: The Definitive Guide
 Learning XML
 ```
-GG. But what if we want to pull the title and date? We can modify the code to also pull the information from the `<date>` tag.
+104. But what if we want to pull the title and date? We can modify the code to also pull the information from the `<date>` tag.
 
 ```Python
 import xml.etree.cElementTree as ET
@@ -728,29 +743,29 @@ for book in root.findall('book'):
   print(title)
 ```
 
-<blockquote>What do you expect this program out output? Why? Explain how this code works in your own words.</blockquote>
+<blockquote>Q4: What do you expect this program out output? Why? Explain how this code works in your own words.</blockquote>
 
-<blockquote>Write a similar program for the .xml file that you created in the last exercise. Pull data from at least two elements. Copy your code and your output in your notebook and explain what your code does (or is attempting to do).</blockquote>
+<blockquote>Q5: Write a similar program for the .xml file that you created in the last exercise. Pull data from at least two elements. Copy your code and your output in your notebook and explain what your code does (or is attempting to do).</blockquote>
 
 ## Writing to XML from Python
 
-When working with JSON, `json.dumps()` made it relatively straightforward to transform a Python dictionary back into a JSON object.
+105. When working with JSON, `json.dumps()` made it relatively straightforward to transform a Python dictionary back into a JSON object.
 
-Going from a Python dictionary to XML is less straightforward. In fact, you'd want to use the [`dicttoxml` module](https://pypi.org/project/dicttoxml/) specifically designed to help with that workflow.
+106. Going from a Python dictionary to XML is less straightforward. In fact, you'd want to use the [`dicttoxml` module](https://pypi.org/project/dicttoxml/) specifically designed to help with that workflow.
 
-For now, we're going to demonstrate how you would create the XML structure manually in Python using Element Tree and then write that to an XML file.
+107. For now, we're going to demonstrate how you would create the XML structure manually in Python using Element Tree and then write that to an XML file.
 
-You create the root element using `ET.Element()`. 
+108. You create the root element using `ET.Element()`. 
 
-Then you can create sub-elements (nested within the root element) using `ET.SubElement()`. 
+109. Then you can create sub-elements (nested within the root element) using `ET.SubElement()`. 
 
-The `SubElement()` function let's us specify parent elements, tags, and attribute: `SubElement(parent, tag, attrib={}, **extra)`
+110. The `SubElement()` function let's us specify parent elements, tags, and attribute: `SubElement(parent, tag, attrib={}, **extra)`
 
-In this example, `parent` is the parent node for the sub-element. `attrib` is a dictionary with any element attributes. `extra` are any additional keyword arguments being passed to the `SubElement()` function.
+111. In this example, `parent` is the parent node for the sub-element. `attrib` is a dictionary with any element attributes. `extra` are any additional keyword arguments being passed to the `SubElement()` function.
 
-Then we would use our standard file `open()` and `write()` operations to write the newly-created structure to an XML file.
+112. Then we would use our standard file `open()` and `write()` operations to write the newly-created structure to an XML file.
 
-To put this all together:
+113. To put this all together:
 ```Python
 # import components of Element Tree package
 import xml.etree.ElementTree as ET
@@ -788,21 +803,43 @@ myFile.write(myData)
 myFile.close()
 ```
 
-<blockquote>QX: Something with your own small XML structure from earlier in the lab and write that to file</blockquote>
+<blockquote>Q6: Create a small XML structure and write it to an XML file.</blockquote>
 
-## XML Project prompts
+## XML Project Prompt
 
-Navigate to an open data portal and download an XML file. OpenData.gov, , other. Open the data in a text editor What are you seeing, how can we start to make sense of it What documentation is available, etc.
+114. Navigate to an open data portal and download an XML file. 
 
-https://findingaids.loc.gov/source/main
-https://data.nhm.ac.uk/?_ga=2.163845238.855747161.1571830706-1425022049.1571830706
-https://data.nls.uk/
-https://lib.msu.edu/feedingamericadata/
-https://www.archives.gov/developer#toc--datasets
+115. A few places to start:
+- [Data.gov](https://www.data.gov/)
+- [City of Chicago Data Portal](https://data.cityofchicago.org/)
+- [City of South Bend Open Data](https://data-southbend.opendata.arcgis.com/)
+- [Library of Congress XML finding aids](https://findingaids.loc.gov/source/main)
+- [National Library of Scotland](https://data.nls.uk/)
+- [National Archives and Records Administration (NARA)](https://www.archives.gov/developer#toc--datasets)
+- [Natural History Museum Data Portal](https://data.nhm.ac.uk/)
+- Various TEI projects
+  * [Digital Archives and Pacific Culture](http://pacific.pitt.edu/InjuredIsland.html)
+  * [The Digital Temple](https://digitaltemple.rotunda.upress.virginia.edu/)
+  * [The Diary of Mary Martin](https://dh.tcd.ie/martindiary/)  
+  * [Toyota City Imaging Project](http://www.bodley.ox.ac.uk/toyota/)
+  * [African American Women Writers](http://digital.nypl.org/schomburg/writers_aa19/)
+  * [The Walt Whitman Archive](https://whitmanarchive.org/)
+  * [Michigan State University, Feeding America: The Historic American Cookbook Dataset](https://lib.msu.edu/feedingamericadata/)
 
+116. Open the data in a text editor. Describe what are you seeing. How can we start to make sense of this data? What documentation is available?
 
-Read the XML data into Python and convert to a Python value.
-
-Create your own small XML structure and write to XML file.
+117. Read the XML data into Python and convert to a Python value.
 
 # Lab Notebook Questions
+
+Q1: Decipher what we're seeing in the JSON here. What are the name/value pairs, and how are they organized in this object?
+
+Q2: Describe the structure of this XML document in your own words.
+
+Q3: Write a similar dictionary for the <code>book.xml</code> file contained in this repo and generate some output. Include code + comments. Explain how your program works in your own words.
+
+Q4: What do you expect this program out output? Why? Explain how this code works in your own words.
+
+Q5: Write a similar program for the .xml file that you created in the last exercise. Pull data from at least two elements. Copy your code and your output in your notebook and explain what your code does (or is attempting to do).
+
+Q6: Create a small XML structure and write it to an XML file.
