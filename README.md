@@ -66,7 +66,7 @@ The only data needed for this lab is the `books.xml` file, which can be dowloade
 
 5. The easiest way to think of JSON data as a plain-text data format made up of something like key-value pairs, like we've encountered previously in working with dictionaries.
 
-6. Example JSON string: `stringOfJsonData = '{"name": Zophie", "isCat": true, "miceCaught": 0, "felineIQ": null}'`
+6. Example JSON string: `stringOfJsonData = '{"name": "Zophie", "isCat": true, "miceCaught": 0, "felineIQ": null}'`
 
 7. From looking at the example string, we can see field names or keys (`name`, `isCat`, `miceCaught`, `felineIQ`) and values for those fields.
 
@@ -160,7 +160,7 @@ null | None
 import json
 
 # string of JSON data
-stringOfJsonData = '{"name": Zophie", "isCat": true, "miceCaught": 0, "felineIQ": null}'
+stringOfJsonData = '{"name": "Zophie", "isCat": true, "miceCaught": 0, "felineIQ": null}'
 
 # load JSON data as Python value 
 jsonDataAsPythonValue = json.loads(stringOfJsonData)
@@ -183,13 +183,13 @@ jsonDataAsPythonValue
 import json
 
 # string of JSON data
-stringOfJsonData = '{"name": Zophie", "isCat": true, "miceCaught": 0, "felineIQ": null}'
+stringOfJsonData = '{"name": "Zophie", "isCat": true, "miceCaught": 0, "felineIQ": null}'
 
 # load JSON data as Python value 
 jsonDataAsPythonValue = json.loads(stringOfJsonData)
 
 # print list of keys
-print jsonDataAsPython.keys()
+print(jsonDataAsPythonValue.keys())
 ```
 
 26. We could get all of the values in the dictionary using the `values()` method.
@@ -198,13 +198,13 @@ print jsonDataAsPython.keys()
 import json
 
 # string of JSON data
-stringOfJsonData = '{"name": Zophie", "isCat": true, "miceCaught": 0, "felineIQ": null}'
+stringOfJsonData = '{"name": "Zophie", "isCat": true, "miceCaught": 0, "felineIQ": null}'
 
 # load JSON data as Python value 
 jsonDataAsPythonValue = json.loads(stringOfJsonData)
 
 # print list of values
-print jsonDataAsPython.values()
+print(jsonDataAsPythonValue.values())
 ```
 
 27. We could iterate by keys over the items in the dictionary.
@@ -213,14 +213,14 @@ print jsonDataAsPython.values()
 import json
 
 # string of JSON data
-stringOfJsonData = '{"name": Zophie", "isCat": true, "miceCaught": 0, "felineIQ": null}'
+stringOfJsonData = '{"name": "Zophie", "isCat": true, "miceCaught": 0, "felineIQ": null}'
 
 # load JSON data as Python value 
 jsonDataAsPythonValue = json.loads(stringOfJsonData)
 
 # iterate by keys using for loop
-for key in jsonDataAsPython.keys():
-  print key, jsonDataAsPython[key]
+for key in jsonDataAsPythonValue.keys():
+  print(key, jsonDataAsPythonValue[key])
 ```
 
 28. We could also iterate over items in dictionary using key-value pairs.
@@ -229,14 +229,14 @@ for key in jsonDataAsPython.keys():
 import json
 
 # string of JSON data
-stringOfJsonData = '{"name": Zophie", "isCat": true, "miceCaught": 0, "felineIQ": null}'
+stringOfJsonData = '{"name": "Zophie", "isCat": true, "miceCaught": 0, "felineIQ": null}'
 
 # load JSON data as Python value 
 jsonDataAsPythonValue = json.loads(stringOfJsonData)
 
 # iterate by key value pairs using for loop
 for key, value in jsonDataAsPythonValue.items():
-  print key, value
+  print(key, value)
 ```
 
 29. We can read the value for a particular key using the index operator. The command `jsonDataAsPythonValue['name']` will return `Zophie`.
@@ -527,7 +527,7 @@ Explanation from: http://www.w3schools.com/xml/xml_whatis.asp
 
 <blockquote>Q2: Describe the structure of this XML document in your own words.</blockquote>
 
-67. The root element of this document is <books>, followed by a series of <book> child elements that contain information about each of the individual books described in the document. 
+67. The root element of this document is `<books>`, followed by a series of `<book>` child elements that contain information about each of the individual books described in the document. 
   
 68. Each `<book>` has an attribute `@category` that describes the subject of the book, a `<title>` (with an attribute `@language`), `<author>` (with child elements `<firstName>` and `<lastName>`), and a publication `<year>`.
 
@@ -566,12 +566,12 @@ print(books)
 
 ```Python
 books = {
-  'title': ['CSS: The Definitive Guide', 'Learning XML']
-  'date': ['2007', '2003']
+  'title': ['CSS: The Definitive Guide', 'Learning XML'],
+  'date': ['2007', '2003'],
   'author': ['Eric Meyer', 'Erik Ray']
   }
 
-print ("My books include books by " + books['author'] + ":")
+print ("My books include books by ", books['author'], ":")
 for title in books['title']:
   print("\t" + title)
 ```
@@ -609,8 +609,8 @@ books = {
 print("My Books: ")
 
 for book, book_info in books.items():
-  full_title = book + " (" + book_info['date'] + ")"
-  print("\t" + full_title_title())
+  full_title = str(book) + " (" + str(book_info['date']) + ")"
+  print("\t" + full_title)
 ```
 82. This program prints the title first as a separate line. The `for` loop digs into the data for each of the books. 
 
@@ -698,17 +698,17 @@ books
 
 97. You probably didn’t assign attributes to your XML tags, so we’ll keep working with tags. If you have attributes in your file, you can consult the documentation for ElementTree to modify your code.
 
-98. This code gave us the root element, but what if we want to see the structure of our document? We can use the `iterator` function to pull all of the elements from our XML file in a simple loop that outputs each tag and the text value associated with it.
+98. This code gave us the root element, but what if we want to see the structure of our document? We can use the `iter` function to pull all of the elements from our XML file in a simple loop that outputs each tag and the text value associated with it.
 
 ```Python
 import xml.etree.cElementTree as ET
 tree = ET.parse('books.xml')
 root = tree.getroot()
 
-iter = root.getiterator()
+getIterator = root.iter()
 
-for element in iter:
-  print element.tag, element.text
+for element in getIterator:
+  print(element.tag, element.text)
 ```
 
 99. This program outputs:
@@ -748,7 +748,7 @@ for book in root.findall('book'):
 CSS: The Definitive Guide
 Learning XML
 ```
-104. But what if we want to pull the title and date? We can modify the code to also pull the information from the `<date>` tag.
+104. But what if we want to pull the title and date? We can modify the code to also pull the information from the `<year>` tag.
 
 ```Python
 import xml.etree.cElementTree as ET
@@ -757,12 +757,12 @@ root = tree.getroot()
 
 for book in root.findall('book'):
   title = book.find('title').text
-  date = book.find('date').text
+  date = book.find('year').text
   
   print(title)
 ```
 
-<blockquote>Q4: What do you expect this program out output? Why? Explain how this code works in your own words.</blockquote>
+<blockquote>Q4: What do you expect this program to output? Why? Explain how this code works in your own words.</blockquote>
 
 <blockquote>Q5: Write a similar program for the .xml file that you created in the last exercise. Pull data from at least two elements. Copy your code and your output in your notebook and explain what your code does (or is attempting to do).</blockquote>
 
@@ -778,7 +778,7 @@ for book in root.findall('book'):
 
 109. Then you can create sub-elements (nested within the root element) using `ET.SubElement()`. 
 
-110. The `SubElement()` function let's us specify parent elements, tags, and attribute: `SubElement(parent, tag, attrib={}, **extra)`
+110. The `SubElement()` function lets us specify parent elements, tags, and attribute: `SubElement(parent, tag, attrib={}, **extra)`
 
 111. In this example, `parent` is the parent node for the sub-element. `attrib` is a dictionary with any element attributes. `extra` are any additional keyword arguments being passed to the `SubElement()` function.
 
@@ -813,7 +813,7 @@ item2.text = 'item2abc'
 myData = ET.tostring(root)
 
 # create new XML file
-myFile = open('items.xml', 'w')
+myFile = open('items.xml', 'wb')
 
 # write XML string to file
 myFile.write(myData)
