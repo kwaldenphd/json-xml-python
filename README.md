@@ -409,7 +409,7 @@ Explanation from: http://www.w3schools.com/xml/xml_whatis.asp
     <td>Elements of Computing II</td>
     <td>T/R 5:30-6:45 PM</td>
     <td>DeBartolo 102</td>
-    <td>Dr. Katherine (Katie) Walden</td>
+    <td>Dr. Katherine Walden</td>
     <td>1046 Flanner</td>
     <td>kwalden@nd.edu</td>
     <td>T/R, 1-2 PM, 4-5 PM</td>
