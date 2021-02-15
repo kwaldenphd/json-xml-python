@@ -326,7 +326,7 @@ with open('output.json', 'w') as json_file:
 
 40. Read the JSON data into Python and convert to a Python value.
 
-41. Create your own small dictionary with data and convert to JSON string.
+<del>41. Create your own small dictionary with data and convert to JSON string.</del>
 
 # XML
 
@@ -761,7 +761,7 @@ for book in root.findall('book'):
   title = book.find('title').text
   date = book.find('year').text
   
-  print(title)
+  print(title, date)
 ```
 
 <blockquote>Q4: What do you expect this program to output? Why? Explain how this code works in your own words.</blockquote>
